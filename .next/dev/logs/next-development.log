@@ -1,12 +1,12 @@
-{"timestamp":"00:00:00.719","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
-{"timestamp":"00:00:00.719","source":"Server","level":"LOG","message":"  ⨯ turbopackServerFastRefresh"}
-{"timestamp":"00:00:00.719","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:07.698","source":"Server","level":"LOG","message":"✅ Payload Initialized"}
-{"timestamp":"00:00:07.721","source":"Server","level":"LOG","message":"✅ Reminder Cron Started"}
-{"timestamp":"00:00:07.722","source":"Server","level":"LOG","message":"🕒 Schedule : 0 * * * *"}
-{"timestamp":"00:00:07.722","source":"Server","level":"LOG","message":"🚀 Ignore 7AM : false"}
-{"timestamp":"00:00:07.722","source":"Server","level":"LOG","message":"⏱️ Test Interval : 0 minute(s)"}
-{"timestamp":"00:00:08.788","source":"Server","level":"WARN","message":"⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from \"vote-given-veterinary-appropriations.trycloudflare.com\".\nCross-origin access to Next.js dev resources is blocked by default for safety.\n\nTo allow this host in development, add it to \"allowedDevOrigins\" in next.config.js and restart the dev server:\n\n// next.config.js\nmodule.exports = {\n  allowedDevOrigins: ['vote-given-veterinary-appropriations.trycloudflare.com'],\n}\n\nRead more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins"}
-{"timestamp":"00:01:01.628","source":"Server","level":"WARN","message":"⚠ Blocked cross-origin request to Next.js dev resource /_next/webpack-hmr from \"silly-alter-guns-cartoons.trycloudflare.com\".\nCross-origin access to Next.js dev resources is blocked by default for safety.\n\nTo allow this host in development, add it to \"allowedDevOrigins\" in next.config.js and restart the dev server:\n\n// next.config.js\nmodule.exports = {\n  allowedDevOrigins: ['silly-alter-guns-cartoons.trycloudflare.com'],\n}\n\nRead more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins"}
-{"timestamp":"00:02:00.440","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:02:02.513","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:00.683","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
+{"timestamp":"00:00:00.683","source":"Server","level":"LOG","message":"  ⨯ turbopackServerFastRefresh"}
+{"timestamp":"00:00:00.683","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:10.423","source":"Server","level":"LOG","message":"✅ Payload Initialized"}
+{"timestamp":"00:00:10.446","source":"Server","level":"LOG","message":"✅ Reminder Cron Started"}
+{"timestamp":"00:00:10.446","source":"Server","level":"LOG","message":"🕒 Schedule : 0 * * * *"}
+{"timestamp":"00:00:10.446","source":"Server","level":"LOG","message":"🚀 Ignore 7AM : false"}
+{"timestamp":"00:00:10.446","source":"Server","level":"LOG","message":"⏱️ Test Interval : 0 minute(s)"}
+{"timestamp":"00:00:11.054","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:36.445","source":"Server","level":"LOG","message":"❌ Invalid Verify Token"}
+{"timestamp":"00:01:38.464","source":"Server","level":"LOG","message":"❌ Invalid Verify Token"}
+{"timestamp":"00:02:16.526","source":"Server","level":"LOG","message":"✅ WhatsApp Webhook Verified"}
