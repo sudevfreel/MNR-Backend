@@ -1,3 +1,4 @@
+import { isAdmin } from '@/access/admin'
 import type { CollectionConfig } from 'payload'
 
 export const Users: CollectionConfig = {
@@ -5,9 +6,29 @@ export const Users: CollectionConfig = {
 
   auth: true,
 
+  access: {
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
+    read: ({ req }) => !!req.user,
+  },
+
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'email', 'role', 'isActive'],
+    defaultColumns: ['name', 'email', 'designation', 'role', 'isActive'],
+    group: 'User Management',
+  },
+
+  hooks: {
+    beforeChange: [
+      ({ data }) => {
+        if (data?.isWhatsappSame) {
+          data.whatsappNumber = data.phone
+        }
+
+        return data
+      },
+    ],
   },
 
   fields: [
@@ -23,24 +44,27 @@ export const Users: CollectionConfig = {
       label: 'Phone Number',
       type: 'text',
       required: true,
+      unique: true,
       validate: (value: string | null | undefined) => {
         if (!value) return 'Phone Number is required'
 
         const phone = value.replace(/\s+/g, '')
 
         if (!/^[6-9]\d{9}$/.test(phone)) {
-          return 'Enter a valid 10-digit mobile number'
+          return 'Enter a valid 10-digit Indian mobile number'
         }
 
         return true
       },
     },
+
     {
       name: 'isWhatsappSame',
       label: 'WhatsApp Number is same as Phone Number',
       type: 'checkbox',
       defaultValue: true,
     },
+
     {
       name: 'whatsappNumber',
       label: 'WhatsApp Number',
@@ -53,6 +77,14 @@ export const Users: CollectionConfig = {
           return 'WhatsApp Number is required'
         }
 
+        if (value) {
+          const phone = value.replace(/\s+/g, '')
+
+          if (!/^[6-9]\d{9}$/.test(phone)) {
+            return 'Enter a valid 10-digit Indian mobile number'
+          }
+        }
+
         return true
       },
     },
@@ -60,8 +92,50 @@ export const Users: CollectionConfig = {
     {
       name: 'designation',
       label: 'Designation',
-      type: 'text',
+      type: 'select',
       required: true,
+      options: [
+        {
+          label: 'Supervisor',
+          value: 'supervisor',
+        },
+        {
+          label: 'Site Engineer',
+          value: 'site-engineer',
+        },
+        {
+          label: 'Mason',
+          value: 'mason',
+        },
+        {
+          label: 'Electrician',
+          value: 'electrician',
+        },
+        {
+          label: 'Painter',
+          value: 'painter',
+        },
+        {
+          label: 'Plumber',
+          value: 'plumber',
+        },
+        {
+          label: 'Helper',
+          value: 'helper',
+        },
+        {
+          label: 'Carpenter',
+          value: 'carpenter',
+        },
+        {
+          label: 'Welder',
+          value: 'welder',
+        },
+        {
+          label: 'Other',
+          value: 'other',
+        },
+      ],
     },
 
     {
@@ -69,7 +143,7 @@ export const Users: CollectionConfig = {
       label: 'Role',
       type: 'select',
       required: true,
-      defaultValue: 'manager',
+      defaultValue: 'employee',
       options: [
         {
           label: 'Admin',
@@ -84,6 +158,9 @@ export const Users: CollectionConfig = {
           value: 'employee',
         },
       ],
+      admin: {
+        position: 'sidebar',
+      },
     },
 
     {
@@ -91,12 +168,9 @@ export const Users: CollectionConfig = {
       label: 'Active',
       type: 'checkbox',
       defaultValue: true,
-    },
-
-    {
-      name: 'notes',
-      label: 'Notes',
-      type: 'textarea',
+      admin: {
+        position: 'sidebar',
+      },
     },
 
     {
@@ -105,7 +179,14 @@ export const Users: CollectionConfig = {
       type: 'date',
       admin: {
         readOnly: true,
+        position: 'sidebar',
       },
+    },
+
+    {
+      name: 'notes',
+      label: 'Notes',
+      type: 'textarea',
     },
   ],
 
