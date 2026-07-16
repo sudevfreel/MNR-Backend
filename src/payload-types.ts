@@ -68,6 +68,10 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    media: Media;
+    groups: Group;
+    tasks: Task;
+    conversations: Conversation;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -76,6 +80,10 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    media: MediaSelect<false> | MediaSelect<true>;
+    groups: GroupsSelect<false> | GroupsSelect<true>;
+    tasks: TasksSelect<false> | TasksSelect<true>;
+    conversations: ConversationsSelect<false> | ConversationsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -125,11 +133,21 @@ export interface User {
   phone: string;
   isWhatsappSame?: boolean | null;
   whatsappNumber?: string | null;
-  designation: string;
+  designation:
+    | 'supervisor'
+    | 'site-engineer'
+    | 'mason'
+    | 'electrician'
+    | 'painter'
+    | 'plumber'
+    | 'helper'
+    | 'carpenter'
+    | 'welder'
+    | 'other';
   role: 'admin' | 'manager' | 'employee';
   isActive?: boolean | null;
-  notes?: string | null;
   lastLogin?: string | null;
+  notes?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -148,6 +166,85 @@ export interface User {
     | null;
   password?: string | null;
   collection: 'users';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media".
+ */
+export interface Media {
+  id: string;
+  alt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "groups".
+ */
+export interface Group {
+  id: string;
+  name: string;
+  siteCode: string;
+  description?: string | null;
+  whatsappGroupId?: string | null;
+  manager: string | User;
+  employees: (string | User)[];
+  notes?: string | null;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tasks".
+ */
+export interface Task {
+  id: string;
+  taskNumber?: string | null;
+  title: string;
+  description?: string | null;
+  assignedGroup: string | Group;
+  assignedTo: string | User;
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  status?: ('pending' | 'in_progress' | 'completed' | 'issue' | 'cancelled') | null;
+  dueDate: string;
+  reminderInterval?: number | null;
+  lastReminderAt?: string | null;
+  completedAt?: string | null;
+  remarks?: string | null;
+  isActive?: boolean | null;
+  createdBy?: (string | null) | User;
+  updatedBy?: (string | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "conversations".
+ */
+export interface Conversation {
+  id: string;
+  task: string | Task;
+  employee: string | User;
+  direction: 'outgoing' | 'incoming';
+  messageType: 'text' | 'image' | 'document' | 'video' | 'audio';
+  message: string;
+  messageStatus?: ('sent' | 'delivered' | 'read' | 'failed') | null;
+  whatsappMessageId?: string | null;
+  aiIntent?: ('completed' | 'in_progress' | 'issue' | 'material_request' | 'delay' | 'unknown') | null;
+  aiSummary?: string | null;
+  isProcessedByAI?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -172,10 +269,27 @@ export interface PayloadKv {
  */
 export interface PayloadLockedDocument {
   id: string;
-  document?: {
-    relationTo: 'users';
-    value: string | User;
-  } | null;
+  document?:
+    | ({
+        relationTo: 'users';
+        value: string | User;
+      } | null)
+    | ({
+        relationTo: 'media';
+        value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'groups';
+        value: string | Group;
+      } | null)
+    | ({
+        relationTo: 'tasks';
+        value: string | Task;
+      } | null)
+    | ({
+        relationTo: 'conversations';
+        value: string | Conversation;
+      } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
@@ -230,8 +344,8 @@ export interface UsersSelect<T extends boolean = true> {
   designation?: T;
   role?: T;
   isActive?: T;
-  notes?: T;
   lastLogin?: T;
+  notes?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -248,6 +362,81 @@ export interface UsersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "media_select".
+ */
+export interface MediaSelect<T extends boolean = true> {
+  alt?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "groups_select".
+ */
+export interface GroupsSelect<T extends boolean = true> {
+  name?: T;
+  siteCode?: T;
+  description?: T;
+  whatsappGroupId?: T;
+  manager?: T;
+  employees?: T;
+  notes?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tasks_select".
+ */
+export interface TasksSelect<T extends boolean = true> {
+  taskNumber?: T;
+  title?: T;
+  description?: T;
+  assignedGroup?: T;
+  assignedTo?: T;
+  priority?: T;
+  status?: T;
+  dueDate?: T;
+  reminderInterval?: T;
+  lastReminderAt?: T;
+  completedAt?: T;
+  remarks?: T;
+  isActive?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "conversations_select".
+ */
+export interface ConversationsSelect<T extends boolean = true> {
+  task?: T;
+  employee?: T;
+  direction?: T;
+  messageType?: T;
+  message?: T;
+  messageStatus?: T;
+  whatsappMessageId?: T;
+  aiIntent?: T;
+  aiSummary?: T;
+  isProcessedByAI?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
