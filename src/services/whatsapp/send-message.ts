@@ -58,7 +58,7 @@ DELAYED`
       `https://graph.facebook.com/v25.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
       {
         messaging_product: 'whatsapp',
-        to: `91${phone}`,
+        to: `${phone}`,
         type: 'template',
         template: {
           name: 'task_reminder',
