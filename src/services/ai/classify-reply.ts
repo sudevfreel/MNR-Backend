@@ -78,7 +78,7 @@ ${employeeReply}
     console.log('2. Calling Gemini')
 
     const response = await gemini.models.generateContent({
-      model: 'gemini-2.5-flash', //Done
+      model: 'gemini-3.5-flash', //Done
       contents: prompt,
     })
 
