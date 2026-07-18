@@ -48,7 +48,7 @@ export async function handleIssue({
   // Notify Manager
   if (manager?.whatsappNumber || manager?.phone) {
     try {
-      logger.whatsapp('Sending issue notification to manager')
+      logger.manager(`Manager phone: ${manager.whatsappNumber || manager.phone}`)
 
       await notifyManager({
         managerPhone: manager.whatsappNumber || manager.phone,

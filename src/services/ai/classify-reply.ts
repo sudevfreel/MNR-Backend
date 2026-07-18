@@ -9,7 +9,10 @@ export interface ClassificationResult {
 }
 
 export async function classifyReply(employeeReply: string): Promise<ClassificationResult> {
-  const prompt = `
+  try {
+    console.log('1. Building prompt')
+
+    const prompt = `
 You are an AI assistant for a WhatsApp Task Management System.
 
 Your job is to classify employee replies.
@@ -72,25 +75,33 @@ Now classify:
 ${employeeReply}
 `
 
-  const response = await gemini.models.generateContent({
-    model: 'gemini-2.5-flash',
-    contents: prompt,
-  })
+    console.log('2. Calling Gemini')
 
-  const text = response.text?.trim() ?? ''
+    const response = await gemini.models.generateContent({
+      model: 'gemini-2.5-flash',
+      contents: prompt,
+    })
 
-  const cleaned = text
-    .replace(/```json/g, '')
-    .replace(/```/g, '')
-    .trim()
+    console.log('3. Gemini responded')
 
-  try {
+    console.log(response)
+
+    const text = response.text?.trim() ?? ''
+
+    console.log('4. Raw text')
+    console.log(text)
+
+    const cleaned = text
+      .replace(/```json/g, '')
+      .replace(/```/g, '')
+      .trim()
+
+    console.log('5. Cleaned')
+    console.log(cleaned)
+
     return JSON.parse(cleaned)
-  } catch {
-    return {
-      intent: 'unknown',
-      confidence: 0,
-      summary: employeeReply,
-    }
+  } catch (err) {
+    console.error('classifyReply ERROR:', err)
+    throw err
   }
 }

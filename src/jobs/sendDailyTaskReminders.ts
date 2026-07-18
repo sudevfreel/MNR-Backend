@@ -1,161 +1,3 @@
-// import cron from 'node-cron'
-// import payload from 'payload'
-
-// import { TaskStatus } from '@/core/enums/task-status'
-// import { sendTaskMessage } from '@/services/whatsapp/send-message'
-
-// function getToday7AM() {
-//   const date = new Date()
-
-//   date.setHours(7, 0, 0, 0)
-
-//   return date
-// }
-
-// export function startTaskReminderJob() {
-//   /**
-//    * Runs every hour.
-//    * Logic decides whether reminder should be sent.
-//    */
-//   cron.schedule(
-//     '0 * * * *',
-//     async () => {
-//       console.log('🔔 Running Task Reminder Job...')
-
-//       try {
-//         const { docs: tasks } = await payload.find({
-//           collection: 'tasks',
-//           limit: 1000,
-//           where: {
-//             and: [
-//               {
-//                 isActive: {
-//                   equals: true,
-//                 },
-//               },
-//               {
-//                 status: {
-//                   not_equals: TaskStatus.COMPLETED,
-//                 },
-//               },
-//             ],
-//           },
-//         })
-
-//         console.log(`Found ${tasks.length} active tasks`)
-
-//         const now = new Date()
-//         const today7AM = getToday7AM()
-
-//         for (const task of tasks) {
-//           try {
-//             /**
-//              * Wait until today's 7 AM
-//              */
-//             if (now < today7AM) {
-//               continue
-//             }
-
-//             const intervalHours = task.reminderInterval || 2
-
-//             let shouldSend = false
-
-//             /**
-//              * Never reminded before.
-//              * Send today's first reminder.
-//              */
-//             if (!task.lastReminderAt) {
-//               shouldSend = true
-//             } else {
-//               const lastReminder = new Date(task.lastReminderAt)
-
-//               const nextReminder = new Date(lastReminder)
-
-//               nextReminder.setHours(nextReminder.getHours() + intervalHours)
-
-//               if (now >= nextReminder) {
-//                 shouldSend = true
-//               }
-//             }
-
-//             if (!shouldSend) {
-//               continue
-//             }
-
-//             const employee = await payload.findByID({
-//               collection: 'users',
-//               id: task.assignedTo as string,
-//             })
-
-//             if (!employee) {
-//               console.log(`Employee not found for task ${task.taskNumber}`)
-//               continue
-//             }
-
-//             const phone = employee.whatsappNumber || employee.phone
-
-//             if (!phone) {
-//               console.log(`No phone number found for ${employee.name}`)
-//               continue
-//             }
-
-//             console.log(`Sending reminder for ${task.taskNumber} -> ${employee.name}`)
-
-//             const response = await sendTaskMessage({
-//               phone,
-//               employeeName: employee.name,
-//               taskTitle: task.title,
-//               description: task.description || '',
-//               dueDate: task.dueDate,
-//             })
-
-//             await payload.update({
-//               collection: 'tasks',
-//               id: task.id,
-//               data: {
-//                 lastReminderAt: new Date().toISOString(),
-//               },
-//             })
-
-//             await payload.create({
-//               collection: 'conversations',
-//               data: {
-//                 task: task.id,
-//                 employee: employee.id,
-
-//                 direction: 'outgoing',
-//                 messageType: 'text',
-
-//                 message: `Reminder sent for task ${task.taskNumber}`,
-
-//                 whatsappMessageId: response.messages[0].id,
-
-//                 messageStatus: 'sent',
-//                 isProcessedByAI: false,
-//               },
-//             })
-
-//             console.log(`✅ Reminder sent for ${task.taskNumber}`)
-//           } catch (err) {
-//             console.error(`❌ Failed reminder for ${task.taskNumber}`)
-
-//             console.error(err)
-//           }
-//         }
-//       } catch (err) {
-//         console.error('Cron Job Failed')
-
-//         console.error(err)
-//       }
-//     },
-//     {
-//       timezone: 'Asia/Kolkata',
-//     },
-//   )
-
-//   console.log('✅ Task Reminder Job Started')
-// }
-
 import cron from 'node-cron'
 import type { Payload } from 'payload'
 
@@ -173,14 +15,6 @@ export function startTaskReminderJob(payload: Payload) {
   const ignore7AM = process.env.IGNORE_7AM_CHECK === 'true'
   const testReminderMinutes = Number(process.env.TEST_REMINDER_INTERVAL_MINUTES || 0)
 
-  console.log('==============================')
-  console.log('🚀 Starting Reminder Cron')
-  console.log('Schedule:', schedule)
-  console.log('Valid Cron:', cron.validate(schedule))
-  console.log('Ignore 7AM:', ignore7AM)
-  console.log('Test Interval:', testReminderMinutes)
-  console.log('==============================')
-
   if (!cron.validate(schedule)) {
     console.error('❌ Invalid CRON expression:', schedule)
     return
@@ -189,14 +23,6 @@ export function startTaskReminderJob(payload: Payload) {
   cron.schedule(
     schedule,
     async () => {
-      console.log('\n===================================')
-      console.log(
-        `🔔 Reminder Job Started : ${new Date().toLocaleString('en-IN', {
-          timeZone: 'Asia/Kolkata',
-        })}`,
-      )
-      console.log('===================================\n')
-
       try {
         const { docs: tasks } = await payload.find({
           collection: 'tasks',
@@ -218,29 +44,21 @@ export function startTaskReminderJob(payload: Payload) {
           },
         })
 
-        console.log(`📋 Found ${tasks.length} active task(s)`)
-
         const now = new Date()
 
         if (!ignore7AM) {
           const today7AM = getToday7AM()
 
           if (now < today7AM) {
-            console.log('⏳ Waiting until 7:00 AM')
             return
           }
         }
 
         for (const task of tasks) {
           try {
-            console.log('\n------------------------------')
-            console.log(`Checking Task : ${task.taskNumber}`)
-            console.log('------------------------------')
-
             let shouldSend = false
 
             if (!task.lastReminderAt) {
-              console.log('📨 Never reminded before')
               shouldSend = true
             } else {
               const lastReminder = new Date(task.lastReminderAt)
@@ -252,15 +70,10 @@ export function startTaskReminderJob(payload: Payload) {
                 nextReminder.setHours(nextReminder.getHours() + (task.reminderInterval || 2))
               }
 
-              console.log('Last Reminder :', lastReminder)
-              console.log('Next Reminder :', nextReminder)
-              console.log('Current Time  :', now)
-
               shouldSend = now >= nextReminder
             }
 
             if (!shouldSend) {
-              console.log('⏭ Reminder not due')
               continue
             }
 
@@ -292,10 +105,6 @@ export function startTaskReminderJob(payload: Payload) {
               continue
             }
 
-            console.log('👤 Employee:', employee.name)
-            console.log('📱 Phone:', phone)
-            console.log('📨 Sending WhatsApp...')
-
             const response = await sendTaskMessage({
               phone,
               employeeName: employee.name,
@@ -303,9 +112,6 @@ export function startTaskReminderJob(payload: Payload) {
               description: task.description || '',
               dueDate: task.dueDate,
             })
-
-            console.log('✅ Meta Response')
-            console.log(JSON.stringify(response, null, 2))
 
             await payload.update({
               collection: 'tasks',
@@ -328,8 +134,6 @@ export function startTaskReminderJob(payload: Payload) {
                 isProcessedByAI: false,
               },
             })
-
-            console.log(`✅ Reminder Sent Successfully (${task.taskNumber})`)
           } catch (err: any) {
             console.error(`❌ Failed sending reminder for ${task.taskNumber}`)
 
@@ -341,8 +145,6 @@ export function startTaskReminderJob(payload: Payload) {
             }
           }
         }
-
-        console.log('\n🎉 Reminder Job Finished\n')
       } catch (err) {
         console.error('❌ Reminder Job Failed')
         console.error(err)
@@ -352,6 +154,4 @@ export function startTaskReminderJob(payload: Payload) {
       timezone: 'Asia/Kolkata',
     },
   )
-
-  console.log('✅ Reminder Cron Registered')
 }
