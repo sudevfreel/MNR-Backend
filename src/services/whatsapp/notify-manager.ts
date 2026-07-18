@@ -1,3 +1,4 @@
+import { logger } from './helpers/logger'
 import { sendTextMessage } from './send-text'
 
 interface NotifyManagerProps {
@@ -17,6 +18,7 @@ export async function notifyManager({
   status,
   summary,
 }: NotifyManagerProps) {
+  logger.whatsapp('Sending manager notification')
   await sendTextMessage({
     phone: managerPhone,
     text: `🚨 *Task Update*
@@ -30,4 +32,6 @@ ${taskTitle}
 
 📝 ${summary}`,
   })
+
+  logger.success('Manager notification sent')
 }

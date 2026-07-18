@@ -9,11 +9,6 @@ export async function sendTextMessage({ phone, text }: SendTextParams) {
   try {
     const formattedPhone = phone.startsWith('91') ? phone : `91${phone}`
 
-    console.log('\n================ SEND TEXT ================\n')
-    console.log('📞 To:', formattedPhone)
-    console.log('💬 Message:')
-    console.log(text)
-
     const response = await axios.post(
       `https://graph.facebook.com/v25.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
       {
