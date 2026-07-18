@@ -27,24 +27,6 @@ export async function sendTaskMessage({
   employeeName,
   dueDate,
 }: SendTaskMessageParams): Promise<WhatsAppSendResponse> {
-  const message = `🏗️ MNR Construction
-
-Hello ${employeeName},
-
-A new task has been assigned.
-
-📌 ${taskTitle}
-
-📝 ${description || '-'}
-
-📅 Due:
-${dueDate || 'Not specified'}
-
-Reply:
-DONE
-ISSUE
-DELAYED`
-
   console.log('📤 Sending WhatsApp Template')
   console.log({
     phone,
