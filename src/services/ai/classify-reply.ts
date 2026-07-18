@@ -100,8 +100,13 @@ ${employeeReply}
     console.log(cleaned)
 
     return JSON.parse(cleaned)
-  } catch (err) {
-    console.error('classifyReply ERROR:', err)
-    throw err
+  } catch (error: any) {
+    console.error('classifyReply ERROR:', error)
+    console.error('Gemini Error')
+    console.error('Status:', error?.status)
+    console.error('Code:', error?.code)
+    console.error('Message:', error?.message)
+    console.error('Full Error:', error)
+    throw error
   }
 }
