@@ -1,4 +1,7 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 interface SendTextParams {
   phone: string
@@ -7,7 +10,8 @@ interface SendTextParams {
 
 export async function sendTextMessage({ phone, text }: SendTextParams) {
   try {
-    const formattedPhone = phone.startsWith('91') ? phone : `91${phone}`
+    const cleanedPhone = phone.replace(/\D/g, '')
+    const formattedPhone = cleanedPhone.startsWith('91') ? cleanedPhone : `91${cleanedPhone}`
 
     const response = await axios.post(
       `https://graph.facebook.com/v25.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,

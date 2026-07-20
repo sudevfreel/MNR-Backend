@@ -4,6 +4,10 @@ import type { Payload } from 'payload'
 import { TaskStatus } from '@/core/enums/task-status'
 import { sendTaskMessage } from '@/services/whatsapp/send-message'
 
+import dotenv from 'dotenv'
+
+dotenv.config()
+
 function getToday7AM() {
   const date = new Date()
   date.setHours(7, 0, 0, 0)

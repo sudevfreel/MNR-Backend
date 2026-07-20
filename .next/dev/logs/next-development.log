@@ -1,14 +1,6 @@
-{"timestamp":"00:00:00.712","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
-{"timestamp":"00:00:00.712","source":"Server","level":"LOG","message":"  ⨯ turbopackServerFastRefresh"}
-{"timestamp":"00:00:00.712","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:20.269","source":"Server","level":"LOG","message":"✅ Payload Initialized"}
-{"timestamp":"00:00:20.269","source":"Server","level":"LOG","message":"=============================="}
-{"timestamp":"00:00:20.269","source":"Server","level":"LOG","message":"🚀 Starting Reminder Cron"}
-{"timestamp":"00:00:20.269","source":"Server","level":"LOG","message":"Schedule: \"* * * * *\""}
-{"timestamp":"00:00:20.270","source":"Server","level":"LOG","message":"Valid Cron: true"}
-{"timestamp":"00:00:20.270","source":"Server","level":"LOG","message":"Ignore 7AM: true"}
-{"timestamp":"00:00:20.270","source":"Server","level":"LOG","message":"Test Interval: 1"}
-{"timestamp":"00:00:20.270","source":"Server","level":"LOG","message":"=============================="}
-{"timestamp":"00:00:20.295","source":"Server","level":"LOG","message":"✅ Reminder Cron Registered"}
-{"timestamp":"00:00:20.912","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:00:53.681","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:00.726","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
+{"timestamp":"00:00:00.726","source":"Server","level":"LOG","message":"  ⨯ turbopackServerFastRefresh"}
+{"timestamp":"00:00:00.726","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:05.349","source":"Server","level":"LOG","message":"✅ Payload Initialized"}
+{"timestamp":"00:00:05.518","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:10.603","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}

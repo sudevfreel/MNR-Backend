@@ -3,6 +3,9 @@ import config from '@payload-config'
 import { getPayload } from 'payload'
 import { processIncomingMessage } from '@/services/whatsapp/processIncoming'
 import { updateMessageStatus } from '@/services/whatsapp/updateMessageStatus'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 /**
  * GET
