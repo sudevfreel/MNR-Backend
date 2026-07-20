@@ -10,6 +10,9 @@ import { Groups } from './collections/groups'
 import { Tasks } from './collections/tasks'
 import { Conversations } from './collections/conversations'
 import { startTaskReminderJob } from './jobs/sendDailyTaskReminders'
+import dotenv from 'dotenv'
+
+dotenv.config()
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)

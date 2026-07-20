@@ -1,5 +1,3 @@
-// src/services/whatsapp/helpers/logger.ts
-
 const ENABLE_LOGS = process.env.NODE_ENV !== 'production'
 
 function log(prefix: string, ...args: unknown[]) {

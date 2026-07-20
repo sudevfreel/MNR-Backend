@@ -18,7 +18,7 @@ export async function notifyManager({
   status,
   summary,
 }: NotifyManagerProps) {
-  logger.whatsapp('Sending manager notification')
+  logger.whatsapp(`Manager phone received: ${managerPhone}`)
   await sendTextMessage({
     phone: managerPhone,
     text: `🚨 *Task Update*

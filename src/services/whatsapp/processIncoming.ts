@@ -118,9 +118,12 @@ export async function processIncomingMessage(payload: Payload, message: Incoming
     // Find Manager
     // --------------------------------------------------
 
+    const groupId =
+      typeof task.assignedGroup === 'object' ? task.assignedGroup.id : task.assignedGroup
+
     const manager = await findManager({
       payload,
-      employeeId: employee.id,
+      groupId,
     })
 
     if (manager) {

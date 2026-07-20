@@ -25,6 +25,9 @@ export async function handleIssue({
   phone,
   summary,
 }: HandleIssueParams) {
+  logger.info('========== HANDLE ISSUE ==========')
+  logger.info(`Manager object: ${JSON.stringify(manager, null, 2)}`)
+
   // Update Task
   await payload.update({
     collection: 'tasks',
@@ -49,6 +52,8 @@ export async function handleIssue({
   if (manager?.whatsappNumber || manager?.phone) {
     try {
       logger.manager(`Manager phone: ${manager.whatsappNumber || manager.phone}`)
+
+      logger.info('Calling notifyManager...')
 
       await notifyManager({
         managerPhone: manager.whatsappNumber || manager.phone,
