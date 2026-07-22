@@ -1,9 +1,10 @@
 import { logger } from './helpers/logger'
-import { sendTextMessage } from './send-text'
+import { sendTemplateMessage } from './helpers/send-template'
 
 interface NotifyManagerProps {
   managerPhone: string
   employeeName: string
+  employeePhone: string
   taskNumber: string
   taskTitle: string
   status: string
@@ -13,24 +14,16 @@ interface NotifyManagerProps {
 export async function notifyManager({
   managerPhone,
   employeeName,
+  employeePhone,
   taskNumber,
-  taskTitle,
-  status,
   summary,
 }: NotifyManagerProps) {
   logger.whatsapp(`Manager phone received: ${managerPhone}`)
-  await sendTextMessage({
+
+  await sendTemplateMessage({
     phone: managerPhone,
-    text: `🚨 *Task Update*
-
-👷 Employee: ${employeeName}
-
-📋 Task: ${taskNumber}
-${taskTitle}
-
-📌 Status: ${status}
-
-📝 ${summary}`,
+    template: 'manager_issue_notification',
+    parameters: [employeeName, employeePhone, taskNumber, summary],
   })
 
   logger.success('Manager notification sent')
