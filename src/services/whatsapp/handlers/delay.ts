@@ -54,6 +54,7 @@ export async function handleDelay({
       await notifyManager({
         managerPhone: manager.whatsappNumber || manager.phone,
         employeeName: employee.name,
+        employeePhone: employee.phone,
         taskNumber: task.taskNumber,
         taskTitle: task.title,
         status: 'Delayed',
