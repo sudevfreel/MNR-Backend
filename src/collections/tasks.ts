@@ -7,7 +7,6 @@ import { TaskStatus } from '@/core/enums/task-status'
 // import { afterTaskCreated } from '@/hooks/afterTaskCreated'
 import { beforeTaskChange } from '@/hooks/beforeTaskChange'
 
-
 export const Tasks: CollectionConfig = {
   slug: 'tasks',
 
@@ -15,7 +14,25 @@ export const Tasks: CollectionConfig = {
     create: isManager,
     update: isManager,
     delete: isAdmin,
-    read: ({ req }) => !!req.user,
+    read: ({ req }) => {
+      const user = req.user
+
+      if (!user) {
+        return false
+      }
+
+      // Admin can see all tasks
+      if (user.role === 'admin') {
+        return true
+      }
+
+      // Employee can only see tasks assigned to them
+      return {
+        assignedTo: {
+          equals: user.id,
+        },
+      }
+    },
   },
 
   admin: {
