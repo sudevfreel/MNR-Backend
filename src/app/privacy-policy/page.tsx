@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
           </h1>
           <p className="mt-3 text-sm text-gray-500">Internal Company Management System</p>
           <p className="mt-5 text-sm text-gray-600">
-            <strong>Effective Date:</strong> 31 October 2026
+            <strong>Effective Date:</strong> 31 October 2026 
           </p>
         </header>
 
