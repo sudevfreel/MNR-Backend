@@ -11,7 +11,7 @@ async function main() {
     groupId: '6a564511f651a5ec1810f852',
   })
 
-  console.log('\n====================')
+  console.log('\n=====================')
   console.log(manager)
   console.log('====================\n')
 
