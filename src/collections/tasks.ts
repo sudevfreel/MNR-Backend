@@ -4,7 +4,6 @@ import { isAdmin } from '@/access/admin'
 import { isManager } from '@/access/manager'
 import { Priority } from '@/core/enums/priority'
 import { TaskStatus } from '@/core/enums/task-status'
-// import { afterTaskCreated } from '@/hooks/afterTaskCreated'
 import { beforeTaskChange } from '@/hooks/beforeTaskChange'
 
 export const Tasks: CollectionConfig = {
