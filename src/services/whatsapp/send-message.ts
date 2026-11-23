@@ -33,9 +33,7 @@ export async function sendTaskMessage({
   console.log('📤 Sending WhatsApp Template')
 
   const cleanedPhone = phone.replace(/\D/g, '')
-  const formattedPhone = cleanedPhone.startsWith('91')
-    ? cleanedPhone
-    : `91${cleanedPhone}`
+  const formattedPhone = cleanedPhone.startsWith('91') ? cleanedPhone : `91${cleanedPhone}`
 
   const formattedDueDate = dueDate
     ? new Date(dueDate).toLocaleString('en-IN', {
@@ -62,7 +60,7 @@ export async function sendTaskMessage({
         template: {
           name: 'task_reminder',
           language: {
-            code: 'en',
+            code: 'en_US',
           },
           components: [
             {
