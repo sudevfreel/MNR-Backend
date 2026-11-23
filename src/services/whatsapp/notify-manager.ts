@@ -22,7 +22,7 @@ export async function notifyManager({
 
   await sendTemplateMessage({
     phone: managerPhone,
-    template: 'manager_issue_notification',
+    template: 'manager_issue_notification_new',
     parameters: [employeeName, employeePhone, taskNumber, summary],
   })
 

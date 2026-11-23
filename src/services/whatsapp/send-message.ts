@@ -58,7 +58,7 @@ export async function sendTaskMessage({
         to: formattedPhone,
         type: 'template',
         template: {
-          name: 'task_reminder',
+          name: 'task_reminder_new',
           language: {
             code: 'en_US',
           },
