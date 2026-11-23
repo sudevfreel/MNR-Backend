@@ -31,11 +31,25 @@ export async function sendTaskMessage({
   dueDate,
 }: SendTaskMessageParams): Promise<WhatsAppSendResponse> {
   console.log('📤 Sending WhatsApp Template')
+
+  const cleanedPhone = phone.replace(/\D/g, '')
+  const formattedPhone = cleanedPhone.startsWith('91')
+    ? cleanedPhone
+    : `91${cleanedPhone}`
+
+  const formattedDueDate = dueDate
+    ? new Date(dueDate).toLocaleString('en-IN', {
+        timeZone: 'Asia/Kolkata',
+        dateStyle: 'medium',
+        timeStyle: 'short',
+      })
+    : 'Not specified'
+
   console.log({
-    phone,
+    phone: formattedPhone,
     employeeName,
     taskTitle,
-    dueDate,
+    dueDate: formattedDueDate,
   })
 
   try {
@@ -43,7 +57,7 @@ export async function sendTaskMessage({
       `https://graph.facebook.com/v25.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
       {
         messaging_product: 'whatsapp',
-        to: `${phone}`,
+        to: formattedPhone,
         type: 'template',
         template: {
           name: 'task_reminder',
@@ -64,13 +78,7 @@ export async function sendTaskMessage({
                 },
                 {
                   type: 'text',
-                  text: dueDate
-                    ? new Date(dueDate).toLocaleString('en-IN', {
-                        timeZone: 'Asia/Kolkata',
-                        dateStyle: 'medium',
-                        timeStyle: 'short',
-                      })
-                    : 'Not specified',
+                  text: formattedDueDate,
                 },
               ],
             },
