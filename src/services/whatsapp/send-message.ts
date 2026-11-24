@@ -60,7 +60,7 @@ export async function sendTaskMessage({
         template: {
           name: 'task_reminder_new',
           language: {
-            code: 'en_US',
+            code: 'en',
           },
           components: [
             {
