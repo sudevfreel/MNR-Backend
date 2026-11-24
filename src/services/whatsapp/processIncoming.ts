@@ -153,6 +153,14 @@ export async function processIncomingMessage(payload: Payload, message: Incoming
     try {
       ai = await classifyReply(originalMessage)
 
+      console.log('========================================')
+      console.log('🎯 WHATSAPP INTENT ROUTING')
+      console.log('Employee Reply:', originalMessage)
+      console.log('AI Intent:', ai.intent)
+      console.log('AI Confidence:', ai.confidence)
+      console.log('AI Summary:', ai.summary)
+      console.log('========================================')
+
       logger.ai(ai.intent, ai.summary)
     } catch (error) {
       logger.error('Gemini Error', error)
