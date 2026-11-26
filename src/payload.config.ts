@@ -25,6 +25,13 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    components: {
+      afterNavLinks: [
+        {
+          path: '@/components/admin/DashboardNavLink#default',
+        },
+      ],
+    },
   },
   onInit: async (payload) => {
     console.log('✅ Payload Initialized')
