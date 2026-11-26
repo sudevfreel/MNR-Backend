@@ -1,16 +1,35 @@
-{"timestamp":"00:00:01.381","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
-{"timestamp":"00:00:01.381","source":"Server","level":"LOG","message":"  ⨯ turbopackServerFastRefresh"}
-{"timestamp":"00:00:01.382","source":"Server","level":"LOG","message":""}
-{"timestamp":"00:00:31.532","source":"Server","level":"LOG","message":"✅ Payload Initialized"}
-{"timestamp":"00:00:31.533","source":"Server","level":"LOG","message":"========================================"}
-{"timestamp":"00:00:31.533","source":"Server","level":"LOG","message":"🚀 Task Reminder Job Started"}
-{"timestamp":"00:00:31.533","source":"Server","level":"LOG","message":"⏰ Schedule: 0 * * * *"}
-{"timestamp":"00:00:31.534","source":"Server","level":"LOG","message":"🌏 Timezone: Asia/Kolkata"}
-{"timestamp":"00:00:31.534","source":"Server","level":"LOG","message":"⏱️ Test interval: Disabled"}
-{"timestamp":"00:00:31.534","source":"Server","level":"LOG","message":"7 AM check ignored: false"}
-{"timestamp":"00:00:31.534","source":"Server","level":"LOG","message":"========================================"}
-{"timestamp":"00:00:31.708","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:00:34.602","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
-{"timestamp":"00:03:30.621","source":"Server","level":"LOG","message":"Generating import map"}
-{"timestamp":"00:03:30.626","source":"Server","level":"LOG","message":"No new imports found, skipping writing import map"}
-{"timestamp":"00:03:32.278","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:00.486","source":"Server","level":"LOG","message":"- Experiments (use with caution):"}
+{"timestamp":"00:00:00.486","source":"Server","level":"LOG","message":"  ⨯ turbopackServerFastRefresh"}
+{"timestamp":"00:00:00.486","source":"Server","level":"LOG","message":""}
+{"timestamp":"00:00:07.872","source":"Server","level":"LOG","message":"✅ Payload Initialized"}
+{"timestamp":"00:00:07.876","source":"Server","level":"LOG","message":"========================================"}
+{"timestamp":"00:00:07.876","source":"Server","level":"LOG","message":"🚀 Task Reminder Job Started"}
+{"timestamp":"00:00:07.876","source":"Server","level":"LOG","message":"⏰ Schedule: 0 * * * *"}
+{"timestamp":"00:00:07.877","source":"Server","level":"LOG","message":"🌏 Timezone: Asia/Kolkata"}
+{"timestamp":"00:00:07.877","source":"Server","level":"LOG","message":"⏱️ Test interval: Disabled"}
+{"timestamp":"00:00:07.877","source":"Server","level":"LOG","message":"7 AM check ignored: false"}
+{"timestamp":"00:00:07.877","source":"Server","level":"LOG","message":"========================================"}
+{"timestamp":"00:00:08.079","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:00:11.091","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:03.467","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:21.813","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:30.870","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:55.909","source":"Server","level":"LOG","message":"Generating import map"}
+{"timestamp":"00:01:55.914","source":"Server","level":"LOG","message":"✓ Compiled in 27ms"}
+{"timestamp":"00:01:55.914","source":"Server","level":"LOG","message":"No new imports found, skipping writing import map"}
+{"timestamp":"00:01:56.007","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:57.027","source":"Server","level":"LOG","message":"✓ Compiled in 14ms"}
+{"timestamp":"00:01:57.156","source":"Server","level":"ERROR","message":"⨯ MongoExpiredSessionError: Cannot use a session that has ended"}
+{"timestamp":"00:01:57.158","source":"Server","level":"LOG","message":"Generating import map"}
+{"timestamp":"00:01:57.165","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:01:57.172","source":"Server","level":"LOG","message":"No new imports found, skipping writing import map"}
+{"timestamp":"00:02:53.840","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:02:58.752","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:05:27.234","source":"Server","level":"LOG","message":"Generating import map"}
+{"timestamp":"00:05:27.273","source":"Server","level":"LOG","message":"No new imports found, skipping writing import map"}
+{"timestamp":"00:05:27.291","source":"Server","level":"LOG","message":"✓ Compiled in 32ms"}
+{"timestamp":"00:05:27.424","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:05:31.728","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:05:34.229","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:05:40.497","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
+{"timestamp":"00:05:47.552","source":"Browser","level":"INFO","message":"%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold"}
